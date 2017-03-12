@@ -7,11 +7,11 @@
 <body>
 <h1>PROFILE</h1>
 
-    <form action="/upload_photo" method="post">
-    Filename: <input type="text" name="filename"><br>
-    File: <input type="file" name="file"><br>
-    <br>
-    <input type="submit" value="Upload">
+<p>You can now upload some of your snaps to this site. Lucky you</p>
+    <form action="/upload_photo" method="post" enctype=multipart/form-data>
+        Upload File: <input type="file" name="file"><br>
+        <br>
+        <input type="submit" value="Upload">
     </form>
 
 

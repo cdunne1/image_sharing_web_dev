@@ -1,12 +1,14 @@
 # Anyone can log in now....
-
-
+import os
+from werkzeug.utils import secure_filename
 import login as l
 
 import flask
 from flask import request
 
 app	= flask.Flask(__name__)
+UPLOAD_FOLDER = 'C:\Working\Projects\Clare\image_sharing\image_sharing_web_dev\photos'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/', methods =['GET', 'POST'])
 def	index():
@@ -74,13 +76,20 @@ def register_user():
 
 @app.route('/upload_photo', methods=['POST'])
 def upload_photo():
-    filename = flask.request.form['filename']
-    file = flask.request.form['file']
+    #filename = flask.request.form['filename']
+    file = flask.request.files['file']
 
-    f = open('photos/'+filename+'.jpg', 'w')
-    # f.write(file)
-    f.writelines(file)
-    f.close()
+    print ('filename=' + file.filename)
+    print(os.path)
+    #file.save(os.path.join(UPLOAD_FOLDER,file.filename))
+
+    filename = secure_filename(file.filename)
+    file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+    #f = open('photos/'+file.filename+'.jpg', 'w')
+    #f.write(file)
+    #f.writelines(file)
+    #f.close()
     print('hi')
     return '<h1> File Uploaded </h1>'
 
