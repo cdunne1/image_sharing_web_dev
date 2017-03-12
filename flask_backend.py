@@ -83,7 +83,7 @@ def upload_photo():
     # f.write(file)
     f.writelines(file)
     f.close()
-
+    print('hi')
     return '<h1> File Uploaded </h1>'
 
 
