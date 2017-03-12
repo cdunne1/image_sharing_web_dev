@@ -1,8 +1,6 @@
 # Anyone can log in now....
 
 
-credentials = {'kcassidy': 'myS3kritwordz', 'cdunne1': 'password', 'cachan': 'cpass'}
-
 import login as l
 
 import flask
