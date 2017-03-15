@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link rel=stylesheet type=text/css href="{{ url_for('static',filename='image_app.css') }}">
 </head>
 <body>
 
 <h1>Login PAGE</h1>
-<p>To log in you need to provide some information</p>
+<p>To log in and access this great app, enter your details</p>
 
     <form action="/login_user" method="post">
     Username: <input type="text" name="username"><br>

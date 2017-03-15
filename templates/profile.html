@@ -3,9 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
+    <link rel=stylesheet type=text/css href="{{ url_for('static',filename='image_app.css') }}">
 </head>
+
 <body>
-<h1>PROFILE</h1>
+<div id ="profile_page">
+    {% if name %}
+		<h1>Welcome back {{name}}!</h1>
+    {% else	%}
+		<h1>Hey you!</h1>
+    {% endif %}
 
 <p>You can now upload some of your snaps to this site. Lucky you</p>
     <form action="/upload_photo" method="post" enctype=multipart/form-data>
@@ -14,6 +21,16 @@
         <input type="submit" value="Upload">
     </form>
 
+<!--@app.route("/greeting")                 # Configure	app	route
+def say_hello():                        # Define	function	for	the	route
+    name = request.args.get("name")
+    if name is None:
+        return "Hello stranger!"
+    else:
+        return "Hello " +name     # Return	the	value	we	want	as	the	response
+app.run()-->
+
+</div>
 
 </body>
 </html>

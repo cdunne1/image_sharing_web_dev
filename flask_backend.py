@@ -7,7 +7,7 @@ import flask
 from flask import request
 
 app	= flask.Flask(__name__)
-UPLOAD_FOLDER = 'C:\Working\Projects\Clare\image_sharing\image_sharing_web_dev\photos'
+UPLOAD_FOLDER = 'C:\\Users\\cdunn\\Documents\\Interactive Digital Media\\Programming for Digital MediaI\\ImageApp\\photos'          #NEEDS TO BE RELATIVE LINK
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/', methods =['GET', 'POST'])
@@ -41,18 +41,27 @@ def register():
 def login():
     return flask.render_template('login.html')
 
-
 @app.route('/login_user',methods =['POST'])
 def login_user():
     username = flask.request.form['username']
     password = flask.request.form['password']
-
     valid_login = l.validate_login(username, password)
-
     if valid_login:
         flask.session['username'] = flask.request.form['username']
+        username = request.args.get("username")
+        if username is not None:
+            #return "Hello " + username  # Return	the	value	we	want	as	the	response
+            return flask.render_template('profile.html')                   # kick you back to landing
 
-        return flask.render_template('profile.html')                   # kick you back to landing
+    # < !-- @ app.route("/greeting")  # Configure	app	route
+    #
+    # def say_hello():  # Define	function	for	the	route
+    #     name = request.args.get("name")
+    #     if name is None:
+    #         return "Hello stranger!"
+    #     else:
+    #         return "Hello " + name  # Return	the	value	we	want	as	the	response
+
     return '<h1> BAD LOGIN. Go Away </h1>'
 
 @app.route('/logout',methods =['GET', 'POST'])

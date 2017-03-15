@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
+    <link rel=stylesheet type=text/css href="{{ url_for('static',filename='image_app.css') }}">
 </head>
 <body>
 
-<h1>REGISTRATION PAGE</h1>
-<p>To register you need to provide some information</p>
+<div id="register">
+<h1>Great, you want to join this world of filtering fun</h1>
+<p>To register you need to provide some information. Make sure it's a combination you remember!</p>
 
     <form action="/register_user" method="post">
     Username: <input type="text" name="username"><br>
@@ -17,7 +20,7 @@
     </form>
 
 
-
+</div>
 
 </body>
 </html>
