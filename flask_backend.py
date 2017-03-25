@@ -52,7 +52,6 @@ def login_user():
         if username is not None:
             #return "Hello " + username  # Return	the	value	we	want	as	the	response
             return flask.render_template('profile.html')                   # kick you back to landing
-
     # < !-- @ app.route("/greeting")  # Configure	app	route
     #
     # def say_hello():  # Define	function	for	the	route
@@ -78,7 +77,6 @@ def register_user():
     valid_registration = l.create_newuser(username, password)
     if valid_registration:
         flask.session['username'] = flask.request.form['username']
-
         return flask.render_template('profile.html')                   # kick you back to landing
     return '<h1> Sorry kiddo. You cant register. Mwahahaha. Go Away </h1>'
 
