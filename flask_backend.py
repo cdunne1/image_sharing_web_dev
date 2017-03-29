@@ -7,7 +7,8 @@ import flask
 from flask import request
 
 app	= flask.Flask(__name__)
-UPLOAD_FOLDER = 'C:\\Users\\cdunn\\Documents\\Interactive Digital Media\\Programming for Digital MediaI\\ImageApp\\photos'          #NEEDS TO BE RELATIVE LINK
+#UPLOAD_FOLDER = 'C:\\Users\\cdunn\\Documents\\Interactive Digital Media\\Programming for Digital MediaI\\ImageApp\\photos'          #NEEDS TO BE RELATIVE LINK
+UPLOAD_FOLDER = 'C:\\Working\\Projects\\Clare\\image_sharing\\image_sharing_web_dev\\photos'          #NEEDS TO BE RELATIVE LINK
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/', methods =['GET', 'POST'])
@@ -45,30 +46,21 @@ def login():
 def login_user():
     username = flask.request.form['username']
     password = flask.request.form['password']
+    print "username = ", username
+    print "password = ", password
     valid_login = l.validate_login(username, password)
+    print valid_login
     if valid_login:
         flask.session['username'] = flask.request.form['username']
-        username = request.args.get("username")
-        if username is not None:
-            #return "Hello " + username  # Return	the	value	we	want	as	the	response
-            return flask.render_template('profile.html')                   # kick you back to landing
-    # < !-- @ app.route("/greeting")  # Configure	app	route
-    #
-    # def say_hello():  # Define	function	for	the	route
-    #     name = request.args.get("name")
-    #     if name is None:
-    #         return "Hello stranger!"
-    #     else:
-    #         return "Hello " + name  # Return	the	value	we	want	as	the	response
-
-    return '<h1> BAD LOGIN. Go Away </h1>'
+        print flask.session['username']
+        return flask.render_template('profile.html', name=username)                   # kick you back to landing
+    return '<h1> BAD LOGIN.  <a href=".">Try Again</a></h1>'
 
 @app.route('/logout',methods =['GET', 'POST'])
 def logout():
     if "username" in flask.session:                                     #want to see whether someone has logged in and in a session
         flask.session.pop('username', None)
         return flask.render_template('landing.html')                   # kick you back to landing
-
 
 @app.route('/register_user', methods=['POST'])
 def register_user():
@@ -77,8 +69,8 @@ def register_user():
     valid_registration = l.create_newuser(username, password)
     if valid_registration:
         flask.session['username'] = flask.request.form['username']
-        return flask.render_template('profile.html')                   # kick you back to landing
-    return '<h1> Sorry kiddo. You cant register. Mwahahaha. Go Away </h1>'
+        return flask.render_template('profile.html', name=username)                   # kick you back to landing
+    return '<h1> Sorry kiddo. Someone already registered with that name. Was it you? </h1>'
 
 
 @app.route('/upload_photo', methods=['POST'])
@@ -98,7 +90,9 @@ def upload_photo():
     #f.writelines(file)
     #f.close()
     print('hi')
-    return '<h1> File Uploaded </h1>'
+    #return '<h1> File Uploaded </h1>'
+    file_location = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    return flask.render_template("image_view.html", file_location=file_location)
 
 
 
