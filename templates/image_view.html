@@ -2,17 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Images</title>
+    <title>Image Gallery</title>
+    <link rel=stylesheet type=text/css href="{{ url_for('static',filename='image_app.css') }}">
 </head>
+
 <body>
+
 <div>
+    <h1>Successfully uploaded the photo <span class="file_name">{{ filename }} </span> below to the server.</h1>
 <img src={{ file_location }} style="width:304px;height:228px;">
 
 </div>
+
 <div>
-    <a href=".">Link to this folder</a>
-    <h1>wabalabdskjfnsd</h1>
+    <img src/>
+    <a href=".">Home</a>         <!-- brings to homepage -->
+    <a href="./login">Log In</a>
 </div>
+
+
+<div id ="logout">
+    <form action="/logout" method="post" >
+    <input type="submit" value="Log Out">
+    </form>
+</div>
+
 
 </body>
 </html>

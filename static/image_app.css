@@ -1,0 +1,72 @@
+@font-face{
+    font-family: Lato;
+}
+body {
+    background:  #e6f2ff;
+}
+h1 {
+    font-family:'Lato', 'veranda', 'serif';
+    font-size: 28px;
+    font-weight: normal;
+    align:middle;
+}
+img {
+    align:middle;
+    width:auto;
+    display:block;
+    padding:20px;
+}
+#register {
+    font-family:'Lato', 'veranda', 'serif';
+    }
+#register h2 {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+#register a {
+    font-color: #a1c3e6;
+}
+#log_in {
+    font-family:'Lato', 'veranda', 'serif';
+    font-weight: normal;
+}
+
+#log_in h3 {
+    font-size: 14px;
+}
+
+#log_in a {
+    font-color: #a1c3e6;
+}
+
+.file_name {
+    color: #FFA500;
+    font-style:italic;
+}
+
+#welcome {
+    font-family:'Lato', 'veranda', 'serif';
+    font-weight: normal;}
+}
+
+#welcome h1{
+    font-size:18px;
+    }
+#welcome profile_name{
+    font-weight:550;
+    background: #a1c3e6;
+}
+
+#logout{
+    float: left;
+}
+#logout form{
+    border-radius: 16px;
+    background:#ff6179;
+    padding: 10px;
+
+}
+
+
+

@@ -7,15 +7,24 @@
 </head>
 
 <body>
-<div id ="profile_page">
-		<h1>Welcome back {{ name }}!</h1>
+<div id ="welcome">
+		<h1>Welcome back <span class ="profile_name">{{ name }}</span>span>!</h1>
 		<h1>Hey you!</h1>
-
     <p>You can now upload some of your snaps to this site. Lucky you</p>
+</div>
+
+<div id="upload">
     <form action="/upload_photo" method="post" enctype=multipart/form-data>
         Upload File: <input type="file" name="file"><br>
         <br>
         <input type="submit" value="Upload">
+    </form>
+
+</div>
+
+<div id ="logout">
+    <form action="/logout" method="post" >
+    <input type="submit" value="Log Out">
     </form>
 </div>
 

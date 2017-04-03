@@ -4,25 +4,27 @@
     <meta charset="UTF-8">
     <title>Landing</title>
     <link rel=stylesheet type=text/css href="{{ url_for('static',filename='image_app.css') }}">
+    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<h1>LANDING PAGE</h1>
-<h2>Welcome to my image sharing app</h2>
 
-<h3>Before we begin the fun, you need to log in or create an account</h3>
+<h1>So you want to share your snaps?</h1>
 
-<a href="/register">Register</a>
+<img src="../images/photography.jpg" alt="GSW photography">
+<img src="../Gallery.png" alt="Pigeon House"/>
+<img src="../Gallery.png" alt="Pigeon House">
 
-<a href="/login">Log In</a>
+<div id="register">
+    <h2>Create a profile to get started</h2>
+    <a href="/register">Register</a>
+</div>
 
+<br />
 
-
-<form action="/login" method="post">
-    <br>
- <!-- Username: <input type="text" name="username"><br>
-  Password: <input type="text" name="password"><br> -->
-  <input type="submit" value="Log In">
-</form>
+<div id="log_in">
+    <h3>If you already have an account, log in below</h3>
+    <a href="/login">Log In</a>
+</div>
 
 </body>
 </html>

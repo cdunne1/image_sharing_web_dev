@@ -29,7 +29,7 @@ def checkif_user_exists(cred_name, cred_pass):          # function to check whet
     userlist = cur.fetchall()   # gives last executed line of db
     close_db_connect(db)
     if len(userlist) > 0:       # if >0; user already exists so not possible to insert new row into db (create login)
-        print "user already existst"
+        print ("user already exists")
         return False            # ("User already exists")          # PLACEHOLDER
     return True
 
