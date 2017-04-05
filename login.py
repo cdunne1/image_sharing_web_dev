@@ -61,5 +61,15 @@ def create_newuser(cred_name, cred_pass):
 
 # queryDB(q2)
 
-# create_newuser("mary", "bloggs")
+def loadphoto_intodb(photoName,username):
+    db, cur = open_db_connect()
+    cur.execute('''INSERT INTO photoUpload (photoName, username, uploadTime) VALUES("''' + photoName + '''", "''' + username + '''", CURRENT_TIMESTAMP)''')
+    close_db_connect(db)
+    return True
 
+def render_Gallery():
+    open_db_connect()
+    cur.execute('''SELECT*FROM photoUpload('photoName')''')
+    gallery = cur.fetchall()                                  #renders list of items (tupples) in db
+    close_db_connect(db)
+    return gallery

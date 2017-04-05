@@ -8,7 +8,8 @@ from flask import request
 
 app	= flask.Flask(__name__)
 #UPLOAD_FOLDER = 'C:\\Users\\cdunn\\Documents\\Interactive Digital Media\\Programming for Digital MediaI\\ImageApp\\photos'          #NEEDS TO BE RELATIVE LINK
-UPLOAD_FOLDER = 'C:/Users/cdunn/Documents/Interactive Digital Media/Programming for Digital MediaI/ImageApp/static/photos'          #NEEDS TO BE RELATIVE LINK
+# UPLOAD_FOLDER = 'C:/Users/cdunn/Documents/Interactive Digital Media/Programming for Digital MediaI/ImageApp/static/photos'          #NEEDS TO BE RELATIVE LINK
+UPLOAD_FOLDER = os.path.dirname(os.getcwd() + "\\static\\photos\\")
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/', methods =['GET', 'POST'])
@@ -32,7 +33,8 @@ def	index():
             else:
                 return flask.render_template("templates.html")         # eejits havent logged in so gettign the prompt again; username not in dictionary credentials
     else:
-        return flask.render_template("landing.html")
+        #l.render_Gallery()
+        return flask.render_template("landing.html", gallery = l.render_Gallery())
 
 @app.route('/register',methods =['GET'])
 def register():
@@ -62,7 +64,6 @@ def logout():
         flask.session.pop('username', None)
         return flask.render_template('landing.html')                   # kick you back to landing
 
-
 @app.route('/register_user', methods=['POST'])
 def register_user():
     username = flask.request.form['username']
@@ -70,28 +71,22 @@ def register_user():
     valid_registration = l.create_newuser(username, password)
     if valid_registration:
         flask.session['username'] = flask.request.form['username']
-        return flask.render_template('profile.html', name=username)                   # kick you back to landing
-    return '<h1> Sorry kiddo. Someone already registered with that name. Was it you? </h1>'
-
+        return flask.render_template('profile.html', name=username)                     # logs you in
+    return flask.render_template('error_registered.html', msg="Username already taken") #generates error page with options
 
 @app.route('/upload_photo', methods=['POST'])
 def upload_photo():
-    #filename = flask.request.form['filename']
-    file = flask.request.files['file']
-
-    print ('filename=' + file.filename)
-    print(os.path)
-    #file.save(os.path.join(UPLOAD_FOLDER,file.filename))
-
+    file = flask.request.files['file']              #set arguments for function below
     filename = secure_filename(file.filename)
+    username = flask.session['username']
+    l.loadphoto_intodb(filename, username)          #call function to insert uploaded photo into db
+    #filename = flask.request.form['filename']
     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
     #f = open('photos/'+file.filename+'.jpg', 'w')
     #f.write(file)
     #f.writelines(file)
     #f.close()
-    print('hi')
-    #return '<h1> File Uploaded </h1>'
     file_location = os.path.join(app.config['UPLOAD_FOLDER'], filename)
     return flask.render_template("image_view.html", file_location='/static/photos/'+filename, filename = filename)
 

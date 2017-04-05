@@ -10,9 +10,7 @@
 
 <h1>So you want to share your snaps?</h1>
 
-<img src="../images/photography.jpg" alt="GSW photography">
-<img src="../Gallery.png" alt="Pigeon House"/>
-<img src="../Gallery.png" alt="Pigeon House">
+<!--<img src="../static/images/photography.jpg" alt="GSW photography">-->
 
 <div id="register">
     <h2>Create a profile to get started</h2>
@@ -24,6 +22,17 @@
 <div id="log_in">
     <h3>If you already have an account, log in below</h3>
     <a href="/login">Log In</a>
+</div>
+
+<div id="gallery_browse">
+    <p>Check out some of the cool photos already uploaded here</p>
+    <ul id="photosUploaded">
+    {% for item in gallery %}                                   <!-- need to pass in db table to render template-->
+        <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
+    {% endfor %}
+    </ul>
+
+
 </div>
 
 </body>
