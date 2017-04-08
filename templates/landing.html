@@ -104,7 +104,7 @@ body {
     <div class="col-sm-4">
     <ul id="photosUploaded">
     {% for item in gallery %}                                   <!-- need to pass in db table to render template-->
-       <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
+       <li><img src="{{ item }}">{{ item }}</img></li>
     {% endfor %}
     </ul>
 
@@ -116,14 +116,14 @@ body {
         </div>
     <div class="col-sm-4">
     <p>Placeholder</p>
-    <img src="birds3.jpg" class="img-responsive margin" style="width:100%" alt="Image">
+    <img src="/static/photos/1974.JPG" class="img-responsive margin" style="width:100%" alt="Image">
     </div>
 
     <ul id="photosUploaded">
     {% for item in gallery %}                                   <!-- need to pass in db table to render template-->
        <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
     {% endfor %}
-    </ul>-->
+    </ul>
 
 </div>
 

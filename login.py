@@ -24,8 +24,8 @@ def checkif_user_exists(cred_name, cred_pass):          # function to check whet
     close_db_connect(db)
     if len(userlist) > 0:       # if >0; user already exists so not possible to insert new row into db (create login)
         return False            # ("User already exists")          # PLACEHOLDER
-    return flask.render_template('error_registered.html', msg="Username already taken")
-    #return True
+    #return flask.render_template('error_registered.html', msg="Username already taken")
+    return True
 
 def validate_login(cred_name, cred_pass):
     db,cur = open_db_connect()
@@ -61,8 +61,11 @@ def loadphoto_intodb(photoName,username):
 
 def render_Gallery():
     db, cur = open_db_connect()
-    cur.execute("SELECT * FROM photoUpload")            #('photoName')
-    gallery = cur.fetchall()                                  #renders list of items (tupples) in db
+    cur.execute("SELECT photoName FROM photoUpload")            #('photoName')
+    result = cur.fetchall()                                  #renders list of items (tupples) in db
     close_db_connect(db)
+    gallery = []
+    for item in result:
+        gallery.append('/static/photos/' + item[0])
     return gallery
 

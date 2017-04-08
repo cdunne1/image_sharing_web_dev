@@ -61,9 +61,11 @@ def logout():
 
 @app.route('/register_user', methods=['POST'])
 def register_user():
+    print ('trying to register a user')
     username = flask.request.form['username']
     password = flask.request.form['password']
     valid_registration = l.create_newuser(username, password)
+    print('Valid registration result = ', valid_registration)
     if valid_registration:
         flask.session['username'] = flask.request.form['username']
         return flask.render_template('profile.html', name=username)                     # logs you in
