@@ -1,14 +1,12 @@
-# Anyone can log in now....
 import os
 from werkzeug.utils import secure_filename
 import login as l
-
 import flask
 from flask import request
 
 app	= flask.Flask(__name__)
 #UPLOAD_FOLDER = 'C:\\Users\\cdunn\\Documents\\Interactive Digital Media\\Programming for Digital MediaI\\ImageApp\\photos'          #NEEDS TO BE RELATIVE LINK
-# UPLOAD_FOLDER = 'C:/Users/cdunn/Documents/Interactive Digital Media/Programming for Digital MediaI/ImageApp/static/photos'          #NEEDS TO BE RELATIVE LINK
+#UPLOAD_FOLDER = 'C:/Users/cdunn/Documents/Interactive Digital Media/Programming for Digital MediaI/ImageApp/static/photos'          #NEEDS TO BE RELATIVE LINK
 UPLOAD_FOLDER = os.path.dirname(os.getcwd() + "\\static\\photos\\")
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -48,10 +46,7 @@ def login():
 def login_user():
     username = flask.request.form['username']
     password = flask.request.form['password']
-    print ("username = ", username)
-    print ("password = ", password)
     valid_login = l.validate_login(username, password)
-    print (valid_login)
     if valid_login:
         flask.session['username'] = flask.request.form['username']
         print (flask.session['username'])
@@ -82,7 +77,6 @@ def upload_photo():
     l.loadphoto_intodb(filename, username)          #call function to insert uploaded photo into db
     #filename = flask.request.form['filename']
     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-
     #f = open('photos/'+file.filename+'.jpg', 'w')
     #f.write(file)
     #f.writelines(file)

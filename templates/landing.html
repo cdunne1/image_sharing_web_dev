@@ -2,38 +2,144 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Landing</title>
-    <link rel=stylesheet type=text/css href="{{ url_for('static',filename='image_app.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">                                    <!-- allow repsonsiveness-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">    <!-- Latest compiled CSS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>                <!-- jQuery library -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>             <!-- Latest compiled JavaScript -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <title>Homepage</title>
+
+<style>
+body {
+      font: 20px Montserrat, sans-serif;
+      line-height: 1.8;
+      color: #f5f6f7;  }
+  p {font-size: 16px;}
+  .margin {margin-bottom: 45px;}
+  .bg-1 {
+      background-color: #1abc9c; /* Green */
+      color: #ffffff;  }
+  .bg-2 {
+      background-color: #474e5d; /* Dark Blue */
+      color: #ffffff;  }
+  .bg-3 {
+      background-color: #ffffff; /* White */
+      color: #555555;  }
+  .bg-4 {
+      background-color: #2f2f2f; /* Black Gray */
+      color: #fff;  }
+  .container-fluid {
+      padding-top: 70px;
+      padding-bottom: 70px;  }
+  .navbar {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border: 0;
+      border-radius: 0;
+      margin-bottom: 0;
+      font-size: 12px;
+      letter-spacing: 5px;  }
+  .navbar-nav  li a:hover {
+      color: #1abc9c !important;  }
+  </style>
 </head>
+
 <body>
+<!-- Navbar -->
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/register">REGISTER</a></li>
+        <li><a href="/login">LOG IN</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-<h1>So you want to share your snaps?</h1>
-
-<!--<img src="../static/images/photography.jpg" alt="GSW photography">-->
-
-<div id="register">
-    <h2>Create a profile to get started</h2>
-    <a href="/register">Register</a>
+<div class="container-fluid bg-1 text-center">                  <!-- First Container -->
+  <h3 class="margin">So you want to upload your snaps?</h3>
+  <img src="../static/images/photography.jpg"class="img-responsive img-circle margin" style="display:inline" alt="Photography" width="350" height="350">
+    <!--<img src="https://www.dropbox.com/sc/vin3cmnb69if4cx/AAADQkiBZa6vmypJPZHRRVi_a" class="img-responsive img-circle margin" style="display:inline" alt="Photography" width="350" height="350">-->
+  <h3>You've come to the right place</h3>
 </div>
 
-<br />
+<div class="container-fluid 3 text-center">                  <!-- Second Container -->
+    <div class="col-sm-6">
+    <h3 class="margin"><a href="/register">Register</a></h3>
+    </div>
+        <div class="col-sm-6">
+        <h3 class="margin"><a href="/login">Log In</a></h3>
+        </div>
+</div>
+<!--<div class="container-fluid bg-3 text-center">                  Third Container -->
+  <!-- <h3 class="margin"><a href="/login">Log In</a></h3></div>-->
 
-<div id="log_in">
-    <h3>If you already have an account, log in below</h3>
-    <a href="/login">Log In</a>
+<div class="container-fluid bg-4 text-center">                  <!-- Gallery Container (Grid) -->
+<h3 class="margin">Here's some previously uploaded snaps</h3><br>
+    <div class="row">
+    <div class="col-sm-4">
+    <p>Placeholder</p>
+    <img src="birds1.jpg" class="img-responsive margin" style="width:100%" alt="Image">
+    </div>
+        <div class="col-sm-4">
+        <p>Placeholder</p>
+        <img src="birds2.jpg" class="img-responsive margin" style="width:100%" alt="Image">
+        </div>
+    <div class="col-sm-4">
+    <p>Placeholder</p>
+    <img src="birds3.jpg" class="img-responsive margin" style="width:100%" alt="Image">
+    </div>
 </div>
 
-<div id="gallery_browse">
-    <p>Check out some of the cool photos already uploaded here</p>
+<div class="row">
+    <div class="col-sm-4">
     <ul id="photosUploaded">
     {% for item in gallery %}                                   <!-- need to pass in db table to render template-->
-        <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
+       <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
     {% endfor %}
     </ul>
 
+    <img src="birds1.jpg" class="img-responsive margin" style="width:100%" alt="Image">
+    </div>
+        <div class="col-sm-4">
+        <p>Placeholder</p>
+        <img src="birds2.jpg" class="img-responsive margin" style="width:100%" alt="Image">
+        </div>
+    <div class="col-sm-4">
+    <p>Placeholder</p>
+    <img src="birds3.jpg" class="img-responsive margin" style="width:100%" alt="Image">
+    </div>
+
+    <ul id="photosUploaded">
+    {% for item in gallery %}                                   <!-- need to pass in db table to render template-->
+       <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
+    {% endfor %}
+    </ul>-->
 
 </div>
+
+
+<!-- <footer class="container-fluid bg-4 text-center">
+  <p>Bootstrap Theme Made By <a href="https://www.w3schools.com">www.w3schools.com</a></p>
+</footer> -->
+
+<!--<div id="gallery_browse">
+    <p>Check out some of the cool photos already uploaded here</p>
+    <ul id="photosUploaded">
+    {% for item in gallery %}                                   <!-- need to pass in db table to render template-->
+       <!-- <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
+    {% endfor %}
+    </ul>-->
+
 
 </body>
 </html>

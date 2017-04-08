@@ -2,26 +2,81 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel=stylesheet type=text/css href="{{ url_for('static',filename='image_app.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">                                    <!-- allow repsonsiveness-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">    <!-- Latest compiled CSS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>                <!-- jQuery library -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>             <!-- Latest compiled JavaScript -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <title>Log In</title>
+<style>
+body {
+      font: 20px Montserrat, sans-serif;
+      line-height: 1.8;
+      color: #f5f6f7;  }
+  p {font-size: 16px;}
+  .margin {margin-bottom: 45px;}
+  .bg-1 {
+      background-color: #1abc9c; /* Green */
+      color: #ffffff;  }
+  .bg-2 {
+      background-color: #474e5d; /* Dark Blue */
+      color: #ffffff;  }
+  .bg-3 {
+      background-color: #ffffff; /* White */
+      color: #555555;  }
+  .bg-4 {
+      background-color: #2f2f2f; /* Black Gray */
+      color: #fff;  }
+  .container-fluid {
+      padding-top: 70px;
+      padding-bottom: 70px;  }
+  .navbar {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border: 0;
+      border-radius: 0;
+      margin-bottom: 0;
+      font-size: 12px;
+      letter-spacing: 5px;  }
+  .navbar-nav  li a:hover {
+      color: #1abc9c !important;  }
+  </style>
 </head>
 <body>
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/register">REGISTER</a></li>
+        <li><a href="/login">LOG IN</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-<h1>Login PAGE</h1>
-<p>To log in and access this great app, enter your details</p>
-
-    <form action="/login_user" method="post">
-    Username: <input type="text" name="username"><br>
-    Password: <input type="text" name="password"><br>
-    <br>
-    <input type="submit" value="Log In">
+<div class="container-fluid bg-1 text-center">                  <!-- First Container -->
+  <h3 class="margin">Log In </h3>
+  <form action="/login_user" method="post">
+    <img src="../static/images/photography.jpg"class="img-responsive img-circle margin" style="display:left" alt="Photography" width="350" height="350">
+    Username: <input type="text" name="username" stye="display:block">
+      <br />
+    Password: <input type="text" name="password" stye="display:block">
+      <br />
+      <input type="submit" value="Log In">
     </form>
+</div>
 
-
-<div id ="logout">
-    <form action="/logout" method="post" >
-    <input type="submit" value="Log Out">
-    </form>
+<div class="container-fluid 3 text-center">                  <!-- Second Container -->
+    <!--<div class="col-sm-6">-->
+    <h3 class="margin"><a href="/gallery">Placeholder link to gallery thumbnails</a></h3>
 </div>
 
 

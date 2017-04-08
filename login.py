@@ -6,13 +6,7 @@ import sqlite3
 #     PRIMARY KEY (Username)
 #     ) ''')
 
-q1 = '''SELECT * FROM	registered_users;'''
-q2 = '''SELECT name FROM sqlite_master WHERE type='table'; '''
-
-# def queryDB (query):                    # test code to look at any tables while in SQL
-#     result = cur.execute(query)
-#     for row in result:
-#         print (row)
+# q1 = '''SELECT * FROM	registered_users;'''                q2 = '''SELECT name FROM sqlite_master WHERE type='table'; '''
 
 def open_db_connect():
     db = sqlite3.connect('mydb.db')
@@ -29,9 +23,9 @@ def checkif_user_exists(cred_name, cred_pass):          # function to check whet
     userlist = cur.fetchall()   # gives last executed line of db
     close_db_connect(db)
     if len(userlist) > 0:       # if >0; user already exists so not possible to insert new row into db (create login)
-        print ("user already exists")
         return False            # ("User already exists")          # PLACEHOLDER
-    return True
+    return flask.render_template('error_registered.html', msg="Username already taken")
+    #return True
 
 def validate_login(cred_name, cred_pass):
     db,cur = open_db_connect()
@@ -52,14 +46,12 @@ def sanitise_inputs(input_string):              # prevent against SQL injections
 def create_newuser(cred_name, cred_pass):
     db,cur = open_db_connect()
     if checkif_user_exists(cred_name, cred_pass) == False:
-        print("Error 400... Bad request babe")
-        return False
+        print("Error 400... Bad request")
+        return flask.render_template('error_registered.html', msg="Username already taken") #False
     else:
         cur.execute('''INSERT INTO registered_users (Username, Password) VALUES("''' + cred_name + '''", "''' + cred_pass+'''")''')
         close_db_connect(db)
         return True
-
-# queryDB(q2)
 
 def loadphoto_intodb(photoName,username):
     db, cur = open_db_connect()
@@ -68,8 +60,9 @@ def loadphoto_intodb(photoName,username):
     return True
 
 def render_Gallery():
-    open_db_connect()
-    cur.execute('''SELECT*FROM photoUpload('photoName')''')
+    db, cur = open_db_connect()
+    cur.execute("SELECT * FROM photoUpload")            #('photoName')
     gallery = cur.fetchall()                                  #renders list of items (tupples) in db
     close_db_connect(db)
     return gallery
+
