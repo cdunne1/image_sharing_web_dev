@@ -70,7 +70,7 @@ body {
 <div class="container-fluid bg-1 text-center">                  <!-- First Container -->
     <h3 class="margin">Welcome back <span class ="profile_name">{{ name }}</span></h3>
     <img src="../static/images/ProfilePanda.jpg"class="img-responsive img-circle margin" style="display:inline" alt="Photography" width="350" height="350">
-    <h3>We missed you</h3>
+    <h3>...we missed you...</h3>
 </div>
 
 <div class="container-fluid bg-3 text-center">                  <!-- Second Container -->
@@ -87,7 +87,6 @@ body {
     <h3 class="margin">Here's some previously uploaded snaps</h3>
     {% for item in gallery %}                                   <!-- need to pass in db table to render template-->
     <img src="{{ item[0] }}" id="{{ item[0] }}" class="landing_gallery" onMouseOver="zoomImage('{{ item[0] }}')" onMouseOut="deeZoooooom('{{ item[0] }}')" onClick="goToDetailedImageView({{ item }} )"/>
-    <!--<img src="{{ item }}" id="{{ item }}" class="landing_gallery" onMouseOver="zoomImage('{{ item }}')" onMouseOut="deeZoooooom('{{ item }}')" onClick="location.href='/image_details'"/>-->
     {% endfor %}
 </div>
 
