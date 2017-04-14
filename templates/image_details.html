@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">                                    <!-- allow repsonsiveness-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">    <!-- Latest compiled CSS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>                <!-- jQuery library -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>             <!-- Latest compiled JavaScript -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" href="static/images/favicon.ico" type="image/x-icon"/>
+    <title>Image Details</title>
+</head>
+<style>
+body {
+      font: 20px Montserrat, sans-serif;
+      line-height: 1.8;
+      color: #f5f6f7;  }
+  p {
+        font-size: 16px;}
+  .margin {margin-bottom: 45px;}
+  .bg-1 {
+      background-color: #1abc9c; /* Green */
+      color: #ffffff;  }
+  .bg-2 {
+      background-color: #474e5d; /* Dark Blue */
+      color: #ffffff;  }
+  .bg-3 {
+      background-color: #ffffff; /* White */
+      color: #555555;  }
+  .bg-4 {
+      background-color: #2f2f2f; /* Black Gray */
+      color: #fff;  }
+  .container-fluid {
+      padding-top: 70px;
+      padding-bottom: 70px;  }
+  .navbar {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border: 0;
+      border-radius: 0;
+      margin-bottom: 0;
+      font-size: 12px;
+      letter-spacing: 5px;  }
+  .navbar-nav  li a:hover {
+      color: #1abc9c !important;  }
+</style>
+
+<body>
+
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/">HOME</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid bg-1 text-center">                  <!-- Image View Container -->
+    <h3 class="margin">So you wanna know more about this image? </h3>
+    <img id="main_image" src="/static/photos/details.jpg"style="width: 450px"/>
+</div>
+
+
+<div class="container-fluid bg-2 text-center">                  <!-- Image Details Container -->
+    <div class="row">
+        <div class="col-sm-4"><h3>Photo Name </h3></div>
+        <div class="col-sm-4"><h3>Uploaded By </h3></div>
+        <div class="col-sm-4"><h3>Uploaded on </h3></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4"><span id="image_name"></span></div>
+        <div class="col-sm-4"><span id="uploader"></span> </div>
+        <div class="col-sm-4"><span id="time_uploaded" onMouseOver ="reformatTime()"></span></div>
+    </div>
+</div>
+
+<!--<img id="main_image" src="abc"/>                //paramas for url to pass through
+<h2 id="image_name"></h2>
+<h2 id="uploader"></h2>
+<h2 id="time_uploaded"></h2>
+ <span class ="profile_name">{{ name }}</span>!</h3>
+-->
+
+<script>
+    var QueryString = function () {           // This function is anonymous, is executed immediately and the return value is assigned to QueryString!
+    var query_string = {};                    // Code from Stack Overflow (http://stackoverflow.com/questions/979975/how-to-get-the-value-from-the-get-parameters)
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i=0;i<vars.length;i++) {
+        var pair = vars[i].split("=");
+            // If first entry with this name
+        if (typeof query_string[pair[0]] === "undefined") {
+          query_string[pair[0]] = decodeURIComponent(pair[1]);
+            // If second entry with this name
+        } else if (typeof query_string[pair[0]] === "string") {
+          var arr = [ query_string[pair[0]],decodeURIComponent(pair[1]) ];
+          query_string[pair[0]] = arr;
+            // If third or later entry with this name
+        } else {
+          query_string[pair[0]].push(decodeURIComponent(pair[1]));
+        }
+      }
+      return query_string;
+    }();
+        document.getElementById("main_image").src = QueryString.image_name;
+        var str = QueryString.image_name;
+        var res = str.slice(15);
+        document.getElementById("image_name").innerHTML = res
+        document.getElementById("uploader").innerHTML = QueryString.uploader;
+        document.getElementById("time_uploaded").innerHTML = QueryString.time_uploaded;
+
+ </script>
+
+</body>
+</html>
