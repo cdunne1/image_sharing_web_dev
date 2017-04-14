@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">                                    <!-- allow repsonsiveness-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">    <!-- Latest compiled CSS -->
+    <script type="text/javascript" src="../static/javascriptapp.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>                <!-- jQuery library -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>             <!-- Latest compiled JavaScript -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" href="static/images/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">    <!-- Latest compiled CSS -->
     <title>Register</title>
-
 <style>
 body {
       font: 20px Montserrat, sans-serif;
@@ -22,7 +23,7 @@ body {
       color: #ffffff;  }
   .bg-2 {
       background-color: #474e5d; /* Dark Blue */
-      color: #ffffff;  }
+      color: #211515;  }
   .bg-3 {
       background-color: #ffffff; /* White */
       color: #555555;  }
@@ -57,6 +58,7 @@ body {
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
+        <li><a href="/">HOME</a></li>
         <li><a href="/register">REGISTER</a></li>
         <li><a href="/login">LOG IN</a></li>
       </ul>
@@ -65,46 +67,78 @@ body {
 </nav>
 
 <div class="container-fluid bg-1 text-center">                  <!-- First Container -->
-  <h3 class="margin">Let's get you registered so that you start sharing your photos</h3>
-  <img src="../static/images/photography.jpg"class="img-responsive img-circle margin" style="display:inline" alt="Photography" width="350" height="350">
-    <!--<img src="https://www.dropbox.com/sc/vin3cmnb69if4cx/AAADQkiBZa6vmypJPZHRRVi_a" class="img-responsive img-circle margin" style="display:inline" alt="Photography" width="350" height="350">-->
+  <h3 class="margin">Let's get registered so that you start making photography panda friends</h3>
+  <img src="../static/images/RedPandaRegister.jpg"class="img-responsive img-circle margin" style="display:inline" alt="Photography" width="350" height="350">
 </div>
 
-<div class="container-fluid 2 text-center">                  <!-- Second Container -->
-    <div class="col-sm-4">
-    <form action="/register_user" method="post">
-    Username: <input type="text" name="username">
-    Password: <input type="text" name="password">
-        <input type="submit" value="Register">
-        </form>
-    </div>
-</div>
-
-<div class="container-fluid bg-4 text-center">                  <!-- Gallery Container (Grid) -->
-<h3 class="margin">Here's some previously uploaded snaps</h3><br>
-    <div class="row">
-    <div class="col-sm-4">
-    <p>Placeholder</p>
-    <img src="birds1.jpg" class="img-responsive margin" style="width:100%" alt="Image">
-    </div>
-        <div class="col-sm-4">
-        <p>Placeholder</p>
-        <img src="birds2.jpg" class="img-responsive margin" style="width:100%" alt="Image">
-        </div>
-    <div class="col-sm-4">
-    <p>Placeholder</p>
-    <img src="birds3.jpg" class="img-responsive margin" style="width:100%" alt="Image">
-    </div>
-</div>
-
-  <!--
-    <form action="/register_user" method="post">
-    Username: <input type="text" name="username"><br>
-    Password: <input type="text" name="password"><br>
-    <br>
-    <input type="submit" value="Register">
+<div class="container-fluid bg-3 text-center">
+    <h3 class="margin">Registration is as easy as one, two, three!</h3>
+    <form action="/register_user" name ="reg_user" method="post">
+        Username: <input type="text" name="username" >
+        Password: <input type="password" name="password">
+        Email: <input type="email" name="email" >
+        <input type="submit" value="Register" onClick="return validateEmail()">
     </form>
-</div>-->
+    </div>
+</div>
 
+<!--
+<div class="container-fluid bg-2 text-center">
+    <h3 class="margin">Here are some previously uplaoded photos in a pretty caraosuel</h3>
+<br />
+<br />
+    <div class="row" style="display:block; position:relative">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">                                    <!-- Indicators
+                <li data-target="#myCarousel" data-slide-to="0" class="active">
+                    {% for item in gallery %}
+                    <img src="{{ item }}" class="landing_gallery" style="width:2000%"/>
+                    {% endfor %}
+                </li>
+            <!--<li data-target="#myCarousel" data-slide-to="1" class="item">
+                {% for item in gallery %}
+                <img src="{{ item }}" class="landing_gallery" style="width:200%"/>
+                {% endfor %}
+                </li>
+            </ol>
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+-->
+<!--
+<script src="..templates/static/alertify.js-0.3.11/lib/alertify.min.js"></script>
+<link rel="stylesheet" href="..templates/static/alertify.js-0.3.11/themes/alertify.default.css" />
+
+alertify.alert("Message");
+
+// confirm dialog
+alertify.confirm("Message", function (e) {
+    if (e) {
+        // user clicked "ok"
+    } else {
+        // user clicked "cancel"
+    }
+});
+
+// prompt dialog
+alertify.prompt("Message", function (e, str) {
+    // str is the input text
+    if (e) {
+        // user clicked "ok"
+    } else {
+        // user clicked "cancel"
+    }
+}, "Default Value");
+
+-->
 </body>
 </html>

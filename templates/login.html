@@ -8,6 +8,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>             <!-- Latest compiled JavaScript -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" href="static/images/favicon.ico" type="image/x-icon"/>
     <title>Log In</title>
 <style>
 body {
@@ -40,7 +41,12 @@ body {
       font-size: 12px;
       letter-spacing: 5px;  }
   .navbar-nav  li a:hover {
-      color: #1abc9c !important;  }
+      color: #1abc9c !important;
+  .landing_gallery {
+      width: 300px;
+      }
+   }
+
   </style>
 </head>
 <body>
@@ -63,21 +69,26 @@ body {
 </nav>
 
 <div class="container-fluid bg-1 text-center">                  <!-- First Container -->
-  <h3 class="margin">Log In </h3>
-  <form action="/login_user" method="post">
-    <img src="../static/images/photography.jpg"class="img-responsive img-circle margin" style="display:left" alt="Photography" width="350" height="350">
-    Username: <input type="text" name="username" stye="display:block">
-      <br />
-    Password: <input type="text" name="password" stye="display:block">
-      <br />
-      <input type="submit" value="Log In">
-    </form>
+    <h3 class="margin">Log in to get back to your photography panda friends</h3>
+    <img src="../static/images/RedPandaLogin.jpg"class="img-responsive img-circle margin" style="display:inline" alt="Photography" width="350" height="350">
+    <h3 class="margin">They missed you, you know</h3>
 </div>
 
-<div class="container-fluid 3 text-center">                  <!-- Second Container -->
-    <!--<div class="col-sm-6">-->
-    <h3 class="margin"><a href="/gallery">Placeholder link to gallery thumbnails</a></h3>
+<div class="container-fluid bg-4 text-center">
+    <h3 class="margin">Logging in is as easy as one, two, three... but it is case sensitive!</h3>
+    <form action="/login_user" method="post">
+        Username: <input type="text" name="username" style="color:black">
+        Password: <input type="password" name="password" style="color:black">
+        <input type="submit" value="Log In" style="color:black">
+        <br />
+        <br />
+    </form>
+    </div>
 </div>
+
+<!--<div class="container-fluid 3 text-center">                  Second Container
+        <!-- <h3 class="margin"><a href="/gallery">Placeholder link to gallery thumbnails</a></h3>
+</div>-->
 
 
 </body>

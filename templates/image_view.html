@@ -8,6 +8,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>             <!-- Latest compiled JavaScript -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" href="static/images/favicon.ico" type="image/x-icon"/>
+    <script type="text/javascript" src="../static/javascriptapp.js"></script>
     <title>Photo Uploaded</title>
 
 <style>
@@ -42,7 +44,11 @@ body {
       letter-spacing: 5px;  }
   .navbar-nav  li a:hover {
       color: #1abc9c !important;  }
-  </style>
+  .landing_gallery {
+      width: 300px;
+      }
+  }
+</style>
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -56,33 +62,26 @@ body {
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/">HOME</a></li>
-        <li><a href="/login">LOG IN</a></li>
-        <li><a href="/logout">LOG OUT</a></li>
+          <li><a href="/landing">HOME</a></li>
+          <li><a href="/logout">LOG OUT</a></li>
       </ul>
     </div>
   </div>
 </nav>
 
 <div class="container-fluid bg-1 text-center">                  <!-- First Container -->
-  <h3 class="margin">Successfully uploaded <span class="file_name">{{ filename }} </span> to the server.</h3>
+  <h3 class="margin">Successfully uploaded <span class="file_name">{{ filename }} </span></h3>
     <img src={{ file_location }} class="img-responsive img-circle margin" style="display:inline" alt="Uploaded Image" width="350" height="350">
-    <h3>Let the photography flavored fun begin!</h3>
+    <h3>Let the photography fun begin!</h3>
   </div>
 
 <div class="container-fluid bg-2 text-center">                  <!-- First Container -->
-  <h3 class="margin">Upload More</h3>
+    <h3 class="margin">Upload More</h3>
         <form action="/upload_photo" method="post" enctype=multipart/form-data style="display:inline">
-        <input type="file" name="file" style="display:inline">
-            <br />
-            <br />
-        <input type="submit" value="Upload">
-        </form>
+        <input type="file" name="file" style="border: 0.5px solid #1abc9c; color: transparent; text-align: vertical; display: inline-block; padding: 6px 12px; margin:auto;" onchange="return validateFileUpload(this)">
+        <input type="submit" value="Upload" style="height: 30px; font-size: 16px; color:#474e5d">   <!--onsubmit="return validateFileUpload(this.file)"  onsubmit="return validateUpload(this)"-->
+    </form>
 </div>
 
-<div class="container-fluidbg-1 text-center">                  <!-- First Container -->
-</div>
-    <div class="container-fluid bg-1 text-center">                  <!-- First Container -->
-    </div>
 </body>
 </html>

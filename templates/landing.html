@@ -4,18 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">                                    <!-- allow repsonsiveness-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">    <!-- Latest compiled CSS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>                <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>                <!-- jQuery library from Google CDN -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>             <!-- Latest compiled JavaScript -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">                       <!-- Google font -->
+    <link rel="shortcut icon" href="static/images/favicon.ico" type="image/x-icon"/>                        <!-- Favicon -->
+    <script type="text/javascript" src="../static/javascriptapp.js"></script>                               <!-- Local JS file -->
+   	    <!--<script src="js/YourExternalJQueryScripts.js"></script>-->
     <title>Homepage</title>
-
 <style>
 body {
       font: 20px Montserrat, sans-serif;
       line-height: 1.8;
       color: #f5f6f7;  }
-  p {font-size: 16px;}
+  p {
+    font-size: 16px;
+    color: #555555;}
   .margin {margin-bottom: 45px;}
   .bg-1 {
       background-color: #1abc9c; /* Green */
@@ -35,18 +38,19 @@ body {
   .navbar {
       padding-top: 15px;
       padding-bottom: 15px;
-      border: 0;
+      border: 1000;
       border-radius: 0;
       margin-bottom: 0;
       font-size: 12px;
       letter-spacing: 5px;  }
   .navbar-nav  li a:hover {
       color: #1abc9c !important;  }
-  </style>
+  .landing_gallery {
+      width: 300px;
+      }
+</style>
 </head>
-
 <body>
-<!-- Navbar -->
 <nav class="navbar navbar-default">
   <div class="container">
     <div class="navbar-header">
@@ -63,83 +67,35 @@ body {
       </ul>
     </div>
   </div>
-</nav>
+</nav>                          <!-- Navbar -->
 
-<div class="container-fluid bg-1 text-center">                  <!-- First Container -->
-  <h3 class="margin">So you want to upload your snaps?</h3>
-  <img src="../static/images/photography.jpg"class="img-responsive img-circle margin" style="display:inline" alt="Photography" width="350" height="350">
-    <!--<img src="https://www.dropbox.com/sc/vin3cmnb69if4cx/AAADQkiBZa6vmypJPZHRRVi_a" class="img-responsive img-circle margin" style="display:inline" alt="Photography" width="350" height="350">-->
-  <h3>You've come to the right place</h3>
-</div>
-
-<div class="container-fluid 3 text-center">                  <!-- Second Container -->
-    <div class="col-sm-6">
-    <h3 class="margin"><a href="/register">Register</a></h3>
-    </div>
-        <div class="col-sm-6">
-        <h3 class="margin"><a href="/login">Log In</a></h3>
-        </div>
-</div>
-<!--<div class="container-fluid bg-3 text-center">                  Third Container -->
-  <!-- <h3 class="margin"><a href="/login">Log In</a></h3></div>-->
-
-<div class="container-fluid bg-4 text-center">                  <!-- Gallery Container (Grid) -->
-<h3 class="margin">Here's some previously uploaded snaps</h3><br>
-    <div class="row">
-    <div class="col-sm-4">
-    <p>Placeholder</p>
-    <img src="birds1.jpg" class="img-responsive margin" style="width:100%" alt="Image">
-    </div>
-        <div class="col-sm-4">
-        <p>Placeholder</p>
-        <img src="birds2.jpg" class="img-responsive margin" style="width:100%" alt="Image">
-        </div>
-    <div class="col-sm-4">
-    <p>Placeholder</p>
-    <img src="birds3.jpg" class="img-responsive margin" style="width:100%" alt="Image">
+<div class="row">
+    <div class="container-fluid bg-1 text-center">                  <!-- First Container -->
+        <h3 class="margin">So you want to upload your snaps?</h3>
+        <img src="../static/images/Red Panda.jpg"class="img-responsive img-circle margin" style="display:inline" alt="Photography" width="350" height="350">
+        <h3>You've come to the right place</h3>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-sm-4">
-    <ul id="photosUploaded">
-    {% for item in gallery %}                                   <!-- need to pass in db table to render template-->
-       <li><img src="{{ item }}">{{ item }}</img></li>
-    {% endfor %}
-    </ul>
-
-    <img src="birds1.jpg" class="img-responsive margin" style="width:100%" alt="Image">
-    </div>
-        <div class="col-sm-4">
-        <p>Placeholder</p>
-        <img src="birds2.jpg" class="img-responsive margin" style="width:100%" alt="Image">
+    <div class="container-fluid 3 text-center">                  <!-- Second Container -->
+        <div class="col-sm-6">
+            <h3 class="margin"><a href="/register">Register</a></h3>
         </div>
-    <div class="col-sm-4">
-    <p>Placeholder</p>
-    <img src="/static/photos/1974.JPG" class="img-responsive margin" style="width:100%" alt="Image">
+        <div class="col-sm-6">
+            <h3 class="margin"><a href="/login">Log In</a></h3>
+        </div>
     </div>
-
-    <ul id="photosUploaded">
-    {% for item in gallery %}                                   <!-- need to pass in db table to render template-->
-       <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
-    {% endfor %}
-    </ul>
-
 </div>
 
+<div class="container-fluid bg-4 text-center">                      <!-- Gallery Container -->
+<h3 class="margin">Here's some previously uploaded snaps</h3>
+      {% for item in gallery %}                                   <!-- need to pass in db table to render template-->
 
-<!-- <footer class="container-fluid bg-4 text-center">
-  <p>Bootstrap Theme Made By <a href="https://www.w3schools.com">www.w3schools.com</a></p>
-</footer> -->
-
-<!--<div id="gallery_browse">
-    <p>Check out some of the cool photos already uploaded here</p>
-    <ul id="photosUploaded">
-    {% for item in gallery %}                                   <!-- need to pass in db table to render template-->
-       <!-- <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
+    <img src="{{ item[0] }}" id="{{ item[0] }}" class="landing_gallery" onMouseOver="zoomImage('{{ item[0] }}')" onMouseOut="deeZoooooom('{{ item[0] }}')" onClick="goToDetailedImageView({{ item }} )"/>
+    <!--<img src="{{ item }}" id="{{ item }}" class="landing_gallery" onMouseOver="zoomImage('{{ item }}')" onMouseOut="deeZoooooom('{{ item }}')" onClick="location.href='/image_details'"/>-->
     {% endfor %}
-    </ul>-->
-
+</div>
 
 </body>
 </html>

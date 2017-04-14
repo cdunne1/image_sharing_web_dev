@@ -2,25 +2,87 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Error Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">                                    <!-- allow repsonsiveness-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">    <!-- Latest compiled CSS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>                <!-- jQuery library from Google CDN -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>             <!-- Latest compiled JavaScript -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">                       <!-- Google font -->
+    <link rel="shortcut icon" href="static/images/favicon.ico" type="image/x-icon"/>                        <!-- Favicon -->
+    <script type="text/javascript" src="../static/javascriptapp.js"></script>                               <!-- Local JS file -->
+    <title>Reg Error</title>
+<style>
+body {
+      font: 20px Montserrat, sans-serif;
+      line-height: 1.8;
+      color: #f5f6f7;  }
+  p {
+    font-size: 16px;
+    color: #555555;}
+  .margin {margin-bottom: 45px;}
+  .bg-1 {
+      background-color: #1abc9c; /* Green */
+      color: #ffffff;  }
+  .bg-2 {
+      background-color: #474e5d; /* Dark Blue */
+      color: #ffffff;  }
+  .bg-3 {
+      background-color: #ffffff; /* White */
+      color: #555555;  }
+  .bg-4 {
+      background-color: #2f2f2f; /* Black Gray */
+      color: #fff;  }
+  .container-fluid {
+      padding-top: 70px;
+      padding-bottom: 70px;  }
+  .navbar {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border: 1000;
+      border-radius: 0;
+      margin-bottom: 0;
+      font-size: 12px;
+      letter-spacing: 5px;  }
+  .navbar-nav  li a:hover {
+      color: #1abc9c !important;  }
+  .landing_gallery {
+      width: 300px;
+      }
+</style>
 </head>
 <body>
-<div id="error">
-    <h1> Easy cowgirl. Not so fast. Looks like there is an error... <br />{{msg}}</h1>
-    <h2> Why not try again, and think harder this time!!</h2>
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+          <li><a href="/">HOME</a></li>
+          <li><a href="/register">REGISTER</a></li>
+        <li><a href="/login">LOG IN</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>                          <!-- Navbar -->
 
-    <p>How about trying to log in again</p>
-    <form action="/login_user" method="post">
-    Username: <input type="text" name="username"><br>
-    Password: <input type="text" name="password"><br>
-    <br>
-    <input type="submit" value="Log In">
-    </form>
-
-    <p>Or having another go at registering your details to unlock the magic of this wonderful app</p>
-    <input type="submit" value="Register">
-    </form>
-
+<div class="container-fluid bg-2 text-center">                  <!-- First Container -->
+    <br />
+    <br />
+    <h3 class="margin">Oi. Not so fast.</h3>
+    <h3>It seems that username is already taken.</h3>
+    <img src="../static/images/SadRedPanda.jpg" style="display:inline" alt="Pandas in Snow" width="auto">
+    <br />
+    <h4><a href="/register">Try again</a></h4>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
 </div>
 
 </body>

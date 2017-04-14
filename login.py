@@ -1,15 +1,19 @@
 import sqlite3
 
-# cur.execute('''CREATE TABLE registered_users (
-#     Username varchar (20),
-#     Password varchar (10),
-#     PRIMARY KEY (Username)
-#     ) ''')
-
-# q1 = '''SELECT * FROM	registered_users;'''                q2 = '''SELECT name FROM sqlite_master WHERE type='table'; '''
+# def updateDB():
+#     db, cur = open_db_connect()
+#     cur.execute('''CREATE TABLE uploaded_photos (
+#         photoName varchar (20),
+#         photoID int AUTO_INCREMENT(3),
+#         userName varchar (10),
+#         photoTime int CURRENT_TIMESTAMP(20),
+#         PRIMARY KEY (photoID)
+#         ) ''')
+#     close_db_connect(db)
+#     return True
 
 def open_db_connect():
-    db = sqlite3.connect('mydb.db')
+    db = sqlite3.connect('mydbcopy.db')
     cur = db.cursor()
     return (db, cur)
 
@@ -43,29 +47,43 @@ def sanitise_inputs(input_string):              # prevent against SQL injections
             return False
     return True
 
-def create_newuser(cred_name, cred_pass):
+def create_newuser(cred_name, cred_pass, email_add):
     db,cur = open_db_connect()
     if checkif_user_exists(cred_name, cred_pass) == False:
         print("Error 400... Bad request")
-        return flask.render_template('error_registered.html', msg="Username already taken") #False
+        return "Username already taken"
     else:
-        cur.execute('''INSERT INTO registered_users (Username, Password) VALUES("''' + cred_name + '''", "''' + cred_pass+'''")''')
+        cur.execute('''INSERT INTO registered_users (Username, Password, Email) VALUES("''' + cred_name + '''", "''' + cred_pass+'''", "''' + email_add +'''")''')
         close_db_connect(db)
         return True
 
+
 def loadphoto_intodb(photoName,username):
     db, cur = open_db_connect()
-    cur.execute('''INSERT INTO photoUpload (photoName, username, uploadTime) VALUES("''' + photoName + '''", "''' + username + '''", CURRENT_TIMESTAMP)''')
+    sql = '''INSERT OR REPLACE INTO photoUploadNew (photoName, username, uploadTime) VALUES("''' + photoName + '''", "''' + username + '''", CURRENT_TIMESTAMP)'''
+    #print( sql)
+    cur.execute(sql)
     close_db_connect(db)
     return True
 
 def render_Gallery():
     db, cur = open_db_connect()
-    cur.execute("SELECT photoName FROM photoUpload")            #('photoName')
-    result = cur.fetchall()                                  #renders list of items (tupples) in db
+    cur.execute("SELECT photoName, username, uploadTime FROM photoUploadNew")            #('photoName')
+    result = cur.fetchall()                                     #renders list of items (tupples) in db
     close_db_connect(db)
-    gallery = []
+    gallery_details = []
     for item in result:
+        gallery = []
         gallery.append('/static/photos/' + item[0])
-    return gallery
+        gallery.append(item[1])
+        gallery.append(item[2])
+        gallery_details.append(gallery)
+    #print (gallery_details)
+    return gallery_details
 
+def imageDetails(photoName):
+    db, cur = open_db_connect()
+    cur.execute("SELECT username, uploadTime FROM photoUploadNew WHERE photoName='{0}'".format(photoName))            # retrieve db entry uploader and update time
+    result = cur.fetchall()                                     #renders list of items (tupples) in db
+    close_db_connect(db)
+    return
